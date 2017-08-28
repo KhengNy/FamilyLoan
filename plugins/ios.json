@@ -1,0 +1,30 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "cam.kncc.familyloan"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "cam.kncc.familyloan"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "cam.kncc.familyloan"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "cam.kncc.familyloan"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "cam.kncc.familyloan"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "cam.kncc.familyloan"
+        }
+    },
+    "dependent_plugins": {}
+}
