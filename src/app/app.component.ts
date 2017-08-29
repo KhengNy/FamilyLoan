@@ -22,9 +22,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Dashboard', component: Dashboard , icon : Globals.icons.dashboard},
+      { title: 'ផ្ទាំងគ្រប់គ្រង', component: Dashboard , icon : Globals.icons.dashboard},
       { title: 'អតិថិជន', component: Customer , icon : Globals.icons.customer},
-      { title: 'Loans', component: Customer , icon : Globals.icons.loan},
+      { title: 'ឥណទាន', component: Customer , icon : Globals.icons.loan},
       { title: 'ភ្នាក់ងារ', component: Customer , icon : Globals.icons.agent},
       { title: 'អ្នកប្រើប្រាស់', component: Customer , icon : Globals.icons.user},
       { title: 'ការកំណត់', component: Customer , icon : Globals.icons.setting}

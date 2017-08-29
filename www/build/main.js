@@ -55798,7 +55798,7 @@ var Dashboard = (function () {
 }());
 Dashboard = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'dashboard',template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/dashboard/index.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Dashboard</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/dashboard/index.html"*/
+        selector: 'dashboard',template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/dashboard/index.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>ផ្ទាំងគ្រប់គ្រង</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/dashboard/index.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
 ], Dashboard);
@@ -74622,9 +74622,9 @@ var MyApp = (function () {
         this.initializeApp();
         // used for an example of ngFor and navigation
         this.pages = [
-            { title: 'Dashboard', component: __WEBPACK_IMPORTED_MODULE_4__pages_dashboard_index__["a" /* Dashboard */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].dashboard },
+            { title: 'ផ្ទាំងគ្រប់គ្រង', component: __WEBPACK_IMPORTED_MODULE_4__pages_dashboard_index__["a" /* Dashboard */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].dashboard },
             { title: 'អតិថិជន', component: __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].customer },
-            { title: 'Loans', component: __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].loan },
+            { title: 'ឥណទាន', component: __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].loan },
             { title: 'ភ្នាក់ងារ', component: __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].agent },
             { title: 'អ្នកប្រើប្រាស់', component: __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].user },
             { title: 'ការកំណត់', component: __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].setting }
@@ -74651,7 +74651,7 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/app/app.html"*/'<ion-menu [content]="content">\n    <ion-header class="profile-info">\n        <img src="assets/img/logo-256.png" class="avatar motion spin fade">\n        <div class="menu-bottom">\n            Ionic Material API\n        </div>\n    </ion-header>\n\n    <ion-content>\n        <ion-list class="disable-user-behavior">\n            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n                <ion-icon [name]="p.icon" item-left></ion-icon>\n                {{p.title}}\n            </button>\n        </ion-list>\n    </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/app/app.html"*/
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/app/app.html"*/'<ion-menu [content]="content">\n    <ion-header class="profile-info">\n        <img src="assets/img/logo-256.png" class="avatar motion spin fade">\n        <div class="profile-name">\n            Kheng Ny\n        </div>\n        <div class="profile-role">\n            Admin\n        </div>\n    </ion-header>\n\n    <ion-content>\n        <ion-list class="disable-user-behavior">\n            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n                <ion-icon [name]="p.icon" item-left></ion-icon>\n                {{p.title}}\n            </button>\n        </ion-list>\n    </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/app/app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);

@@ -3839,7 +3839,7 @@ ion-icon::before {
   -webkit-transform: translateZ(0) rotate(0) scale(1) !important;
   transform: translateZ(0) rotate(0) scale(1) !important;
   transition: all .3s ease-out !important;
-  top: 16px;
+  top: 24px;
   left: 16px;
   height: 65px;
   width: 65px;
@@ -3856,12 +3856,22 @@ ion-icon::before {
   width: 56px;
 }
 
-.menu-bottom {
-  bottom: 16px;
+.profile-name {
+  bottom: 32px;
   left: 16px;
   right: 16px;
   position: absolute;
   color: white;
+  font-size: 16px;
+}
+
+.profile-role {
+  bottom: 12px;
+  left: 16px;
+  right: 16px;
+  position: absolute;
+  color: #c6c6c6;
+  font-size: 12px;
 }
 
 .spin {
@@ -3886,6 +3896,14 @@ ion-icon::before {
 
 .toolbar-background-md {
   background: #f8f8f8 !important;
+}
+
+.ion-app.md {
+  font-size: 16pt;
+}
+
+.menu-inner {
+  width: 270px !important;
 }
 
 ion-action-sheet {
