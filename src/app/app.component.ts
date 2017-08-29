@@ -3,8 +3,9 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { Dashboard } from '../pages/dashboard/index';
+import { Customer } from '../pages/customer/index';
+import * as Globals from './globals';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,17 +13,21 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = Dashboard;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Dashboard', component: Dashboard , icon : Globals.icons.dashboard},
+      { title: 'អតិថិជន', component: Customer , icon : Globals.icons.customer},
+      { title: 'Loans', component: Customer , icon : Globals.icons.loan},
+      { title: 'ភ្នាក់ងារ', component: Customer , icon : Globals.icons.agent},
+      { title: 'អ្នកប្រើប្រាស់', component: Customer , icon : Globals.icons.user},
+      { title: 'ការកំណត់', component: Customer , icon : Globals.icons.setting}
     ];
 
   }

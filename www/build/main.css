@@ -3825,6 +3825,69 @@ ion-icon::before {
   src: local("Noto Sans Bold"), local("Noto-Sans-Bold"), url("../assets/fonts/noto-sans-bold.woff") format("woff"), url("../assets/fonts/noto-sans-bold.ttf") format("truetype");
 }
 
+.profile-info {
+  min-height: 150px;
+  background-image: url("../assets/img/material-graphite.jpg");
+  background-size: 120%;
+  background-position: 0%;
+  transition: all .5s ease-in-out;
+}
+
+.profile-info .avatar {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: translateZ(0) rotate(0) scale(1) !important;
+  transform: translateZ(0) rotate(0) scale(1) !important;
+  transition: all .3s ease-out !important;
+  top: 16px;
+  left: 16px;
+  height: 65px;
+  width: 65px;
+}
+
+.avatar {
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  display: inline-block;
+  height: 56px;
+  left: 16px;
+  position: absolute;
+  width: 56px;
+}
+
+.menu-bottom {
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  position: absolute;
+  color: white;
+}
+
+.spin {
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  -webkit-transform: translateZ(0) rotate(0) scale(0) !important;
+  transform: translateZ(0) rotate(0) scale(0) !important;
+  transition: all .3s ease-out !important;
+}
+
+.fade {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  transition: all .1s ease-out !important;
+}
+
+.motion {
+  transition: all .5s ease-out;
+}
+
+.toolbar-background-md {
+  background: #f8f8f8 !important;
+}
+
 ion-action-sheet {
   left: 0;
   top: 0;
