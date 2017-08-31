@@ -12,8 +12,8 @@
     <ion-content>
         <ion-list class="disable-user-behavior">
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-                <ion-icon [name]="p.icon" item-left></ion-icon>
-                {{p.title}}
+                <ion-icon [name]="p.icon" item-left kh></ion-icon>
+                <ion-label kh>{{p.title}}</ion-label>
             </button>
         </ion-list>
     </ion-content>

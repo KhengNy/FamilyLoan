@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { ModalController, ViewController, NavController, NavParams, Platform } from 'ionic-angular';
 
 @Component({
   selector: 'customer',
@@ -10,7 +10,7 @@ export class Customer {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -34,4 +34,36 @@ export class Customer {
       item: item
     });
   }
+
+  openAddModal() {
+    let profileModal = this.modalCtrl.create(ModalAdd, { userId: 8675309 });
+    profileModal.present();
+  }
+
+}
+
+@Component({
+  templateUrl: 'form.html'
+})
+export class ModalAdd {
+
+  modal = {
+    title : "",
+    description : ""
+  }
+
+  constructor(public platform: Platform,
+    public params: NavParams,
+    public viewCtrl: ViewController) {
+    console.log('UserId', params.get('userId'));
+  }
+
+  submit(){
+    this.viewCtrl.dismiss(this.modal);
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
 }

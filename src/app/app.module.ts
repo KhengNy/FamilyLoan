@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { Dashboard } from '../pages/dashboard/index';
-import { Customer } from '../pages/customer/index';
+import { Customer, ModalAdd } from '../pages/customer/index';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,7 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     Dashboard,
-    Customer
+    Customer, ModalAdd
   ],
   imports: [
     BrowserModule,
@@ -23,7 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     Dashboard,
-    Customer
+    Customer, ModalAdd
   ],
   providers: [
     StatusBar,

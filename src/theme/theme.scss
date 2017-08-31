@@ -52,6 +52,7 @@ $toolbar-bg-color: #f8f8f8;
     position: absolute;
     color: white;
     font-size: 16px;
+    line-height: 26px;
 }
 .profile-role{
     bottom: 12px;
@@ -60,6 +61,7 @@ $toolbar-bg-color: #f8f8f8;
     position: absolute;
     color: rgb(198, 198, 198);
     font-size: 12px;
+    line-height: 22px;
 }
 .spin {
     -webkit-backface-visibility: hidden !important;
@@ -89,4 +91,13 @@ $toolbar-bg-color: #f8f8f8;
 }
 .menu-inner{
     width: 270px !important;
+}
+[kh],
+[kh] ion-label,
+[kh] ion-select,
+[kh] input {
+    line-height: 36px;
+}
+ion-icon[kh]{
+    line-height: 50px !important;
 }

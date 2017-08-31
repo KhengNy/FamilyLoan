@@ -3863,6 +3863,7 @@ ion-icon::before {
   position: absolute;
   color: white;
   font-size: 16px;
+  line-height: 26px;
 }
 
 .profile-role {
@@ -3872,6 +3873,7 @@ ion-icon::before {
   position: absolute;
   color: #c6c6c6;
   font-size: 12px;
+  line-height: 22px;
 }
 
 .spin {
@@ -3904,6 +3906,17 @@ ion-icon::before {
 
 .menu-inner {
   width: 270px !important;
+}
+
+[kh],
+[kh] ion-label,
+[kh] ion-select,
+[kh] input {
+  line-height: 36px;
+}
+
+ion-icon[kh] {
+  line-height: 50px !important;
 }
 
 ion-action-sheet {

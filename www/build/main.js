@@ -42938,9 +42938,9 @@ function PanGesture_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__components_modal_modal_component__ = __webpack_require__(65);
 /* unused harmony reexport ModalCmp */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__components_modal_modal_controller__ = __webpack_require__(135);
-/* unused harmony reexport ModalController */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_53__components_modal_modal_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__components_nav_nav__ = __webpack_require__(68);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_54__components_nav_nav__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_54__components_nav_nav__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__components_nav_nav_pop__ = __webpack_require__(66);
 /* unused harmony reexport NavPop */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__components_nav_nav_pop_anchor__ = __webpack_require__(137);
@@ -43066,11 +43066,11 @@ function PanGesture_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_114__navigation_ionic_page__ = __webpack_require__(227);
 /* unused harmony reexport IonicPage */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_115__navigation_nav_controller__ = __webpack_require__(19);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_115__navigation_nav_controller__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_115__navigation_nav_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_116__navigation_nav_controller_base__ = __webpack_require__(45);
 /* unused harmony reexport NavControllerBase */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_117__navigation_nav_params__ = __webpack_require__(15);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_117__navigation_nav_params__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_117__navigation_nav_params__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_118__navigation_nav_util__ = __webpack_require__(21);
 /* unused harmony reexport DeepLinkMetadata */
 /* unused harmony reexport DeepLinkMetadataFactory */
@@ -43082,7 +43082,7 @@ function PanGesture_tsickle_Closure_declarations() {
 /* unused harmony reexport UrlSerializer */
 /* unused harmony reexport DeepLinkConfigToken */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_121__navigation_view_controller__ = __webpack_require__(5);
-/* unused harmony reexport ViewController */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_121__navigation_view_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_122__gestures_pan_gesture__ = __webpack_require__(43);
 /* unused harmony reexport PanGesture */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_123__gestures_gesture__ = __webpack_require__(223);
@@ -55724,6 +55724,7 @@ webpackEmptyContext.id = 98;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Customer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ModalAdd; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -55736,7 +55737,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var Customer = Customer_1 = (function () {
-    function Customer(navCtrl, navParams) {
+    function Customer(modalCtrl, navCtrl, navParams) {
+        this.modalCtrl = modalCtrl;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         // If we navigated to this page, we will have an item available as a nav param
@@ -55759,14 +55761,45 @@ var Customer = Customer_1 = (function () {
             item: item
         });
     };
+    Customer.prototype.openAddModal = function () {
+        var profileModal = this.modalCtrl.create(ModalAdd, { userId: 8675309 });
+        profileModal.present();
+    };
     return Customer;
 }());
 Customer = Customer_1 = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'customer',template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/index.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>អតិថិជន</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/index.html"*/
+        selector: 'customer',template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/index.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title kh>អតិថិជន</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-searchbar></ion-searchbar>\n  <ion-list>\n    <!-- <ion-list-header>Today</ion-list-header> -->\n    <ion-item-sliding>\n      <ion-item>\n        <ion-avatar item-start>\n          <img src="assets/img/avatar-ts-woody.png">\n        </ion-avatar>\n        <h2>Woody</h2>\n        <p>This town ain\'t big enough for the two of us!</p>\n        <ion-note item-end>3:43 pm</ion-note>\n      </ion-item>\n      <ion-item-options>\n          <button ion-button color="light" icon-start>\n            <ion-icon name="edit"></ion-icon>\n            កែរ\n          </button>\n          <button ion-button color="danger" icon-start>\n            <ion-icon name="delete"></ion-icon>\n            លុប\n          </button>\n        </ion-item-options>\n    </ion-item-sliding>\n    <ion-item-sliding>\n      <ion-item>\n        <ion-avatar item-start>\n          <img src="assets/img/avatar-ts-woody.png">\n        </ion-avatar>\n        <h2>Dara</h2>\n        <p>This town ain\'t big enough for the two of us!</p>\n        <ion-note item-end>4:43 pm</ion-note>\n      </ion-item>\n      <ion-item-options>\n          <button ion-button color="light" icon-start>\n            <ion-icon name="edit"></ion-icon>\n            កែរ\n          </button>\n          <button ion-button color="danger" icon-start>\n            <ion-icon name="delete"></ion-icon>\n            លុប\n          </button>\n        </ion-item-options>\n    </ion-item-sliding>\n    <ion-item-sliding>\n      <ion-item>\n        <ion-avatar item-start>\n          <img src="assets/img/avatar-ts-woody.png">\n        </ion-avatar>\n        <h2>Chivin</h2>\n        <p>This town ain\'t big enough for the two of us!</p>\n        <ion-note item-end>4:43 pm</ion-note>\n      </ion-item>\n      <ion-item-options>\n          <button ion-button color="light" icon-start>\n            <ion-icon name="edit"></ion-icon>\n            កែរ\n          </button>\n          <button ion-button color="danger" icon-start>\n            <ion-icon name="delete"></ion-icon>\n            លុប\n          </button>\n        </ion-item-options>\n    </ion-item-sliding>\n    <!-- <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button> -->\n  </ion-list>\n  <!-- <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div> -->\n  <ion-fab bottom right (click)="openAddModal()">\n    <button ion-fab><ion-icon [name]="\'add\'"></ion-icon></button>\n  </ion-fab>\n</ion-content>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/index.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
 ], Customer);
+
+var ModalAdd = (function () {
+    function ModalAdd(platform, params, viewCtrl) {
+        this.platform = platform;
+        this.params = params;
+        this.viewCtrl = viewCtrl;
+        this.modal = {
+            title: "",
+            description: ""
+        };
+        console.log('UserId', params.get('userId'));
+    }
+    ModalAdd.prototype.submit = function () {
+        this.viewCtrl.dismiss(this.modal);
+    };
+    ModalAdd.prototype.dismiss = function () {
+        this.viewCtrl.dismiss();
+    };
+    return ModalAdd;
+}());
+ModalAdd = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/form.html"*/'<ion-header>\n    <ion-toolbar>\n        <ion-title kh>\n            បន្ថែមអតិថិជនថ្មី\n        </ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span ion-text color="primary" showWhen="ios">បិទ</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n        <ion-buttons end>\n            <button ion-button (click)="submit()">\n                <span ion-text color="primary">រក្សាទុក</span>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content kh>\n    <ion-list>\n        <ion-item>\n            <ion-label>ឈ្មោះអតិថិជន</ion-label>\n            <ion-input type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>លេខអត្តសញ្ញាណប័ណ្ណ</ion-label>\n            <ion-input type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ភេទ</ion-label>\n            <ion-select interface="action-sheet">\n                <ion-option value="f">ប្រុស</ion-option>\n                <ion-option value="m">ស្រី</ion-option>\n            </ion-select>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ថ្ងៃខែឆ្នាំកំណើត</ion-label>\n            <ion-datetime displayFormat="DD MM YYYY"></ion-datetime>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ស្ថានភាពគ្រួសារ</ion-label>\n            <ion-select interface="action-sheet">\n                <ion-option value="s">នៅលីវ</ion-option>\n                <ion-option value="m">រៀបការហើយ</ion-option>\n            </ion-select>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>Civility</ion-label>\n            <ion-input [(ngModel)]="modal.description" type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>សញ្ជាតិ</ion-label>\n            <ion-input [(ngModel)]="modal.description" type="text"></ion-input>\n        </ion-item>\n    </ion-list>\n\n    <ion-list>\n        <ion-item>\n            <ion-label>អ៊ីម៉ែល</ion-label>\n            <ion-input [(ngModel)]="modal.description" type="email"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>លេខទូរស័ព្ទ</ion-label>\n            <ion-input [(ngModel)]="modal.description" type="tel"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>លេខទូរស័ព្ទអត្តិថិជន</ion-label>\n            <ion-input [(ngModel)]="modal.description" type="tel"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ទីលំនៅបច្បន្នអតិថិជន</ion-label>\n            <ion-input [(ngModel)]="modal.description" type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ឯកសារបញ្ចាំ</ion-label>\n            <ion-input [(ngModel)]="modal.description" type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ស្ថានភាពអត្តិថិជន</ion-label>\n            <ion-select interface="action-sheet">\n                <ion-option value="s">សកម្ម</ion-option>\n                <ion-option value="m">អសកម្ម</ion-option>\n            </ion-select>\n        </ion-item>\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/form.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ViewController */]])
+], ModalAdd);
 
 var Customer_1;
 //# sourceMappingURL=index.js.map
@@ -55798,9 +55831,9 @@ var Dashboard = (function () {
 }());
 Dashboard = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'dashboard',template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/dashboard/index.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>ផ្ទាំងគ្រប់គ្រង</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/dashboard/index.html"*/
+        selector: 'dashboard',template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/dashboard/index.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title kh>ផ្ទាំងគ្រប់គ្រង</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <!-- <ion-fab bottom right #fab>\n    <button ion-fab><ion-icon [name]="\'add\'"></ion-icon></button>\n    <ion-fab-list side="top">\n      <button ion-fab (click)="share(\'facebook\', fab)">Facebook</button>\n      <button ion-fab (click)="share(\'twitter\', fab)">Twitter</button>\n    </ion-fab-list>\n  </ion-fab> -->\n</ion-content>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/dashboard/index.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
 ], Dashboard);
 
 //# sourceMappingURL=index.js.map
@@ -74376,7 +74409,7 @@ AppModule = __decorate([
         declarations: [
             __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_4__pages_dashboard_index__["a" /* Dashboard */],
-            __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */]
+            __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["b" /* ModalAdd */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -74386,7 +74419,7 @@ AppModule = __decorate([
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_4__pages_dashboard_index__["a" /* Dashboard */],
-            __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */]
+            __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["b" /* ModalAdd */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */],
@@ -74623,6 +74656,7 @@ var MyApp = (function () {
         // used for an example of ngFor and navigation
         this.pages = [
             { title: 'ផ្ទាំងគ្រប់គ្រង', component: __WEBPACK_IMPORTED_MODULE_4__pages_dashboard_index__["a" /* Dashboard */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].dashboard },
+            { title: 'ការបង់ប្រាក់', component: __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].payment },
             { title: 'អតិថិជន', component: __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].customer },
             { title: 'ឥណទាន', component: __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].loan },
             { title: 'ភ្នាក់ងារ', component: __WEBPACK_IMPORTED_MODULE_5__pages_customer_index__["a" /* Customer */], icon: __WEBPACK_IMPORTED_MODULE_6__globals__["a" /* icons */].agent },
@@ -74647,11 +74681,11 @@ var MyApp = (function () {
     return MyApp;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */])
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/app/app.html"*/'<ion-menu [content]="content">\n    <ion-header class="profile-info">\n        <img src="assets/img/logo-256.png" class="avatar motion spin fade">\n        <div class="profile-name">\n            Kheng Ny\n        </div>\n        <div class="profile-role">\n            Admin\n        </div>\n    </ion-header>\n\n    <ion-content>\n        <ion-list class="disable-user-behavior">\n            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n                <ion-icon [name]="p.icon" item-left></ion-icon>\n                {{p.title}}\n            </button>\n        </ion-list>\n    </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/app/app.html"*/
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/app/app.html"*/'<ion-menu [content]="content">\n    <ion-header class="profile-info">\n        <img src="assets/img/logo-256.png" class="avatar motion spin fade">\n        <div class="profile-name">\n            Kheng Ny\n        </div>\n        <div class="profile-role">\n            Admin\n        </div>\n    </ion-header>\n\n    <ion-content>\n        <ion-list class="disable-user-behavior">\n            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n                <ion-icon [name]="p.icon" item-left kh></ion-icon>\n                <ion-label kh>{{p.title}}</ion-label>\n            </button>\n        </ion-list>\n    </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/app/app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
@@ -74670,6 +74704,7 @@ var sep = '/';
 var version = "22.2.2";
 var icons = {
     'dashboard': 'speedometer',
+    'payment': 'cash',
     'customer': 'people',
     'loan': 'logo-usd',
     'agent': 'contacts',

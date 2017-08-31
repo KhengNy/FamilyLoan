@@ -23,6 +23,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'ផ្ទាំងគ្រប់គ្រង', component: Dashboard , icon : Globals.icons.dashboard},
+      { title: 'ការបង់ប្រាក់', component: Customer , icon : Globals.icons.payment},
       { title: 'អតិថិជន', component: Customer , icon : Globals.icons.customer},
       { title: 'ឥណទាន', component: Customer , icon : Globals.icons.loan},
       { title: 'ភ្នាក់ងារ', component: Customer , icon : Globals.icons.agent},
