@@ -1,0 +1,101 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title kh>
+            {{model.titleModal}}
+        </ion-title>
+
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span kh ion-text color="primary" showWhen="ios">បិទ</span>
+                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+            </button>
+        </ion-buttons>
+        
+        <ion-buttons end>
+            <button ion-button (click)="submit()">
+                <span kh ion-text color="primary">រក្សាទុក</span>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content kh>
+    <ion-list>
+        <ion-item>
+            <ion-label>ឈ្មោះអតិថិជន</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>លេខអត្តសញ្ញាណប័ណ្ណ</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>ភេទ</ion-label>
+            <ion-select interface="action-sheet">
+                <ion-option value="f">ប្រុស</ion-option>
+                <ion-option value="m">ស្រី</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>ថ្ងៃខែឆ្នាំកំណើត</ion-label>
+            <ion-datetime displayFormat="DD MM YYYY"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>ស្ថានភាពគ្រួសារ</ion-label>
+            <ion-select interface="action-sheet">
+                <ion-option value="s">នៅលីវ</ion-option>
+                <ion-option value="m">រៀបការហើយ</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Civility</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>សញ្ជាតិ</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item>
+            <ion-label>អ៊ីម៉ែល</ion-label>
+            <ion-input type="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>លេខទូរស័ព្ទ</ion-label>
+            <ion-input type="tel"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>លេខទូរស័ព្ទអត្តិថិជន</ion-label>
+            <ion-input type="tel"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>ទីលំនៅបច្បន្នអតិថិជន</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>ឯកសារបញ្ចាំ</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>ស្ថានភាពអត្តិថិជន</ion-label>
+            <ion-select interface="action-sheet">
+                <ion-option value="s">សកម្ម</ion-option>
+                <ion-option value="m">អសកម្ម</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

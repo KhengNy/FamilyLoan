@@ -1,17 +1,19 @@
 <ion-header>
     <ion-toolbar>
         <ion-title kh>
-            បន្ថែមអតិថិជនថ្មី
+            {{model.titleModal}}
         </ion-title>
+
         <ion-buttons start>
             <button ion-button (click)="dismiss()">
-                <span ion-text color="primary" showWhen="ios">បិទ</span>
+                <span kh ion-text color="primary" showWhen="ios">បិទ</span>
                 <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
             </button>
         </ion-buttons>
+        
         <ion-buttons end>
             <button ion-button (click)="submit()">
-                <span ion-text color="primary">រក្សាទុក</span>
+                <span kh ion-text color="primary">រក្សាទុក</span>
             </button>
         </ion-buttons>
     </ion-toolbar>
@@ -52,39 +54,39 @@
 
         <ion-item>
             <ion-label>Civility</ion-label>
-            <ion-input [(ngModel)]="modal.description" type="text"></ion-input>
+            <ion-input type="text"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>សញ្ជាតិ</ion-label>
-            <ion-input [(ngModel)]="modal.description" type="text"></ion-input>
+            <ion-input type="text"></ion-input>
         </ion-item>
     </ion-list>
 
     <ion-list>
         <ion-item>
             <ion-label>អ៊ីម៉ែល</ion-label>
-            <ion-input [(ngModel)]="modal.description" type="email"></ion-input>
+            <ion-input type="email"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>លេខទូរស័ព្ទ</ion-label>
-            <ion-input [(ngModel)]="modal.description" type="tel"></ion-input>
+            <ion-input type="tel"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>លេខទូរស័ព្ទអត្តិថិជន</ion-label>
-            <ion-input [(ngModel)]="modal.description" type="tel"></ion-input>
+            <ion-input type="tel"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>ទីលំនៅបច្បន្នអតិថិជន</ion-label>
-            <ion-input [(ngModel)]="modal.description" type="text"></ion-input>
+            <ion-input type="text"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>ឯកសារបញ្ចាំ</ion-label>
-            <ion-input [(ngModel)]="modal.description" type="text"></ion-input>
+            <ion-input type="text"></ion-input>
         </ion-item>
 
         <ion-item>

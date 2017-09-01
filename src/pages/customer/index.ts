@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, ViewController, NavController, NavParams, Platform } from 'ionic-angular';
+import { ModalController, ViewController, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'customer',
@@ -8,22 +8,25 @@ import { ModalController, ViewController, NavController, NavParams, Platform } f
 export class Customer {
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: Array<{title: string, image: string, note: string, time: string}>;
 
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams,
+    public alertCtrl: AlertController
+  ) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+    this.initData();
+  }
 
+  initData(){
     this.items = [];
     for (let i = 1; i < 11; i++) {
       this.items.push({
         title: 'Item ' + i,
+        image : 'assets/img/arya.jpg',
         note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+        time: i + ':' + i + ' AM'
       });
     }
   }
@@ -35,9 +38,84 @@ export class Customer {
     });
   }
 
-  openAddModal() {
-    let profileModal = this.modalCtrl.create(ModalAdd, { userId: 8675309 });
-    profileModal.present();
+
+  openCreateModal() {
+    let model = {
+      titleModal : 'បន្ថែមអតិថិជនថ្មី'
+    };
+    let createModal = this.modalCtrl.create(ModalAdd, { model: model });
+    createModal.present();
+  }
+
+  searchItems(ev: any) {
+    // Reset items back to all of the items
+    // this.initializeItems();
+
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    } else{
+      this.initData();
+    }
+  }
+
+  openEditModal(item){
+    item.titleModal = 'កែប្រែអតិថិជន';
+    let editModal = this.modalCtrl.create(ModalAdd, { model : item });
+    editModal.present();
+  }
+
+  deleteItem(item){
+    this.showConfirm();
+  }
+
+  showRadio() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('តើអ្នកប្រាកដជាចង់លុបអតិថិជនមែនទេ?');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Blue',
+      value: 'blue',
+      checked: true
+    });
+
+    alert.addButton('ទេ');
+    alert.addButton({
+      text: 'យល់ព្រម',
+      handler: data => {
+        // this.testRadioOpen = false;
+        // this.testRadioResult = data;
+      }
+    });
+    alert.present();
+  }
+
+  showConfirm() {
+    let confirm = this.alertCtrl.create({
+      title: 'អតិថិជន',
+      message: 'តើអ្នកប្រាកដជាចង់លុបអតិថិជនមែនទេ?',
+      buttons: [
+        {
+          text: 'ទេ',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'បាទ',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 }
@@ -47,7 +125,7 @@ export class Customer {
 })
 export class ModalAdd {
 
-  modal = {
+  model = {
     title : "",
     description : ""
   }
@@ -55,11 +133,11 @@ export class ModalAdd {
   constructor(public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController) {
-    console.log('UserId', params.get('userId'));
+    this.model = params.get('model');
   }
 
   submit(){
-    this.viewCtrl.dismiss(this.modal);
+    this.viewCtrl.dismiss(this.model);
   }
 
   dismiss() {
