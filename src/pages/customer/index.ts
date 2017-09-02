@@ -22,14 +22,15 @@ export class Customer {
     }
   }
 
-  initListData(){
+  initListData(){ 
     this.items = [];
     for (let i = 1; i < 11; i++) {
       this.items.push({
         fullName: 'Item ' + i,
         idCardNumber : i + '',
         civility: 'This is item #' + i,
-        gender: i + ':' + i + ' AM'
+        gender: i + ':' + i + ' AM',
+        email: 'yep@gmail.com'
       });
     }
   }
@@ -63,21 +64,21 @@ export class Customer {
   }
 
   openCreateModal() {
-    let model = {
-      titleModal : 'បន្ថែមអតិថិជនថ្មី'
-    };
-    let createModal = this.modalCtrl.create(ModalAdd, { model: model });
-    createModal.present().then(data => {
-      this.items.push(data);
-    });
+    let createModal = this.modalCtrl.create(CustomerFromModal, {titleModal : 'បន្ថែមអតិថិជនថ្មី', model: CustomerModel });
+    createModal.onDidDismiss(data => {
+      if(data){
+        this.items.push(data);
+      }
+    })
+    createModal.present();
   }
 
   openEditModal(model){
-    model.titleModal = 'កែប្រែអតិថិជន';
-    let editModal = this.modalCtrl.create(ModalAdd, { model : model });
-    editModal.present().then(data => {
+    let editModal = this.modalCtrl.create(CustomerFromModal, {titleModal : 'កែប្រែអតិថិជន',  model : model });
+    editModal.onDidDismiss(data => {
       model = data;
-    });
+    })
+    editModal.present();
   }
 
   deleteItem(item){
@@ -132,14 +133,16 @@ export class Customer {
 @Component({
   templateUrl: 'form.html'
 })
-export class ModalAdd {
+export class CustomerFromModal {
 
+  titleModal : string;
   model : CustomerModel;
 
   constructor(public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController) {
     this.model = params.get('model');
+    this.titleModal = params.get('titleModal');
   }
 
   submit(){

@@ -23,11 +23,11 @@
     <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>
     <ion-list>
       <!-- <ion-list-header>Today</ion-list-header> -->
-      <ion-item-sliding *ngFor="let item of items" (click)="itemTapped($event, item)">
-        <ion-item>
-          <!-- <ion-avatar item-start>
-            <img src="{{item.image}}">
-          </ion-avatar> -->
+      <ion-item-sliding *ngFor="let item of items">
+        <ion-item (click)="itemTapped($event, item)">
+          <ion-avatar item-start>
+            <img src="assets/img/arya.jpg">
+          </ion-avatar>
           <h2>{{item.fullName}}</h2>
           <p>{{item.email}}</p>
           <ion-note item-end>{{item.gender}}</ion-note>
@@ -51,7 +51,7 @@
     <ion-card>
       <ion-item>
         <ion-avatar item-start>
-          <!-- <img src="img/marty-avatar.png"> -->
+          <img src="assets/img/arya.jpg">
         </ion-avatar>
         <h2>{{modelDetail.fullName}}</h2>
         <p>{{modelDetail.idCardNumber}}</p>
@@ -64,22 +64,20 @@
       </ion-card-content>
     
       <ion-row>
-        <ion-col>
-          <button ion-button icon-left clear small>
-            <ion-icon name="thumbs-up"></ion-icon>
-            <div>12 Likes</div>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-left clear small>
-            <ion-icon name="text"></ion-icon>
-            <div>4 Comments</div>
+        <ion-col left text-left>
+          <button ion-button clear small>
+            <div>12 កម្ចីឥណទាន</div>
           </button>
         </ion-col>
         <ion-col center text-center>
-          <ion-note>
-            11h ago
-          </ion-note>
+          <button ion-button clear small>
+            <div>5 Active</div>
+          </button>
+        </ion-col>
+        <ion-col right text-right>
+          <button ion-button clear small>
+            <div>5 Active</div>
+          </button>
         </ion-col>
       </ion-row>
     </ion-card>

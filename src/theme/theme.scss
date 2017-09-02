@@ -96,8 +96,13 @@ $toolbar-bg-color: #f8f8f8;
 [kh] ion-label,
 [kh] ion-select,
 [kh] input {
-    line-height: 36px;
+    line-height: 24px;
 }
 ion-icon[kh]{
-    line-height: 50px !important;
+    line-height: 36px !important;
+}
+.item-datetime ion-label,
+.item-select ion-label,
+.item-input ion-label{
+    color: gray;
 }
