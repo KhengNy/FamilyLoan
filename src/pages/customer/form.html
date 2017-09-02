@@ -23,17 +23,17 @@
     <ion-list>
         <ion-item>
             <ion-label>ឈ្មោះអតិថិជន</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input [(ngModel)]="model.fullName" type="text"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>លេខអត្តសញ្ញាណប័ណ្ណ</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input [(ngModel)]="model.idCardNumber" type="text"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>ភេទ</ion-label>
-            <ion-select interface="action-sheet">
+            <ion-select [(ngModel)]="model.gender" interface="action-sheet">
                 <ion-option value="f">ប្រុស</ion-option>
                 <ion-option value="m">ស្រី</ion-option>
             </ion-select>
@@ -41,12 +41,12 @@
 
         <ion-item>
             <ion-label>ថ្ងៃខែឆ្នាំកំណើត</ion-label>
-            <ion-datetime displayFormat="DD MM YYYY"></ion-datetime>
+            <ion-datetime [(ngModel)]="model.birthDate" displayFormat="DD MM YYYY"></ion-datetime>
         </ion-item>
 
         <ion-item>
             <ion-label>ស្ថានភាពគ្រួសារ</ion-label>
-            <ion-select interface="action-sheet">
+            <ion-select [(ngModel)]="model.maritalStatus" interface="action-sheet">
                 <ion-option value="s">នៅលីវ</ion-option>
                 <ion-option value="m">រៀបការហើយ</ion-option>
             </ion-select>
@@ -54,44 +54,44 @@
 
         <ion-item>
             <ion-label>Civility</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input [(ngModel)]="model.civility" type="text"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>សញ្ជាតិ</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input [(ngModel)]="model.nationality" type="text"></ion-input>
         </ion-item>
     </ion-list>
 
     <ion-list>
         <ion-item>
             <ion-label>អ៊ីម៉ែល</ion-label>
-            <ion-input type="email"></ion-input>
+            <ion-input [(ngModel)]="model.email" type="email"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>លេខទូរស័ព្ទ</ion-label>
-            <ion-input type="tel"></ion-input>
+            <ion-input [(ngModel)]="model.mobile1" type="tel"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>លេខទូរស័ព្ទអត្តិថិជន</ion-label>
-            <ion-input type="tel"></ion-input>
+            <ion-input [(ngModel)]="model.mobile" type="tel"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>ទីលំនៅបច្បន្នអតិថិជន</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input [(ngModel)]="model.currentAddress" type="text"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>ឯកសារបញ្ចាំ</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input [(ngModel)]="model.customerDocuments" type="text"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>ស្ថានភាពអត្តិថិជន</ion-label>
-            <ion-select interface="action-sheet">
+            <ion-select [(ngModel)]="model.status" interface="action-sheet">
                 <ion-option value="s">សកម្ម</ion-option>
                 <ion-option value="m">អសកម្ម</ion-option>
             </ion-select>

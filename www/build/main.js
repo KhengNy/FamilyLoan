@@ -55744,31 +55744,32 @@ var Customer = Customer_1 = (function () {
         this.alertCtrl = alertCtrl;
         // If we navigated to this page, we will have an item available as a nav param
         this.selectedItem = navParams.get('item');
-        this.initData();
+        if (this.selectedItem) {
+            this.initDetailData();
+        }
+        else {
+            this.initListData();
+        }
     }
-    Customer.prototype.initData = function () {
+    Customer.prototype.initListData = function () {
         this.items = [];
         for (var i = 1; i < 11; i++) {
             this.items.push({
-                title: 'Item ' + i,
-                image: 'assets/img/arya.jpg',
-                note: 'This is item #' + i,
-                time: i + ':' + i + ' AM'
+                fullName: 'Item ' + i,
+                idCardNumber: i + '',
+                civility: 'This is item #' + i,
+                gender: i + ':' + i + ' AM'
             });
         }
+    };
+    Customer.prototype.initDetailData = function () {
+        this.modelDetail = this.selectedItem;
     };
     Customer.prototype.itemTapped = function (event, item) {
         // That's right, we're pushing to ourselves!
         this.navCtrl.push(Customer_1, {
             item: item
         });
-    };
-    Customer.prototype.openCreateModal = function () {
-        var model = {
-            titleModal: 'បន្ថែមអតិថិជនថ្មី'
-        };
-        var createModal = this.modalCtrl.create(ModalAdd, { model: model });
-        createModal.present();
     };
     Customer.prototype.searchItems = function (ev) {
         // Reset items back to all of the items
@@ -55778,20 +55779,51 @@ var Customer = Customer_1 = (function () {
         // if the value is an empty string don't filter the items
         if (val && val.trim() != '') {
             this.items = this.items.filter(function (item) {
-                return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+                return (item.fullName.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
         }
         else {
-            this.initData();
+            this.initListData();
         }
     };
-    Customer.prototype.openEditModal = function (item) {
-        item.titleModal = 'កែប្រែអតិថិជន';
-        var editModal = this.modalCtrl.create(ModalAdd, { model: item });
-        editModal.present();
+    Customer.prototype.openCreateModal = function () {
+        var _this = this;
+        var model = {
+            titleModal: 'បន្ថែមអតិថិជនថ្មី'
+        };
+        var createModal = this.modalCtrl.create(ModalAdd, { model: model });
+        createModal.present().then(function (data) {
+            _this.items.push(data);
+        });
+    };
+    Customer.prototype.openEditModal = function (model) {
+        model.titleModal = 'កែប្រែអតិថិជន';
+        var editModal = this.modalCtrl.create(ModalAdd, { model: model });
+        editModal.present().then(function (data) {
+            model = data;
+        });
     };
     Customer.prototype.deleteItem = function (item) {
-        this.showConfirm();
+        var _this = this;
+        this.showConfirm('អតិថិជន', 'តើអ្នកប្រាកដជាចង់លុបអតិថិជនមែនទេ?', 'យល់ព្រម', 'ទេ', function () {
+            _this.items.splice(_this.items.indexOf(item), 1);
+        }, function () { });
+    };
+    Customer.prototype.showConfirm = function (title, message, lblYes, lblNo, fnYes, fnNo) {
+        var confirm = this.alertCtrl.create({
+            title: title,
+            message: message,
+            buttons: [
+                {
+                    text: lblNo,
+                    handler: fnNo
+                }, {
+                    text: lblYes,
+                    handler: fnYes
+                }
+            ]
+        });
+        return confirm.present();
     };
     Customer.prototype.showRadio = function () {
         var alert = this.alertCtrl.create();
@@ -55812,32 +55844,11 @@ var Customer = Customer_1 = (function () {
         });
         alert.present();
     };
-    Customer.prototype.showConfirm = function () {
-        var confirm = this.alertCtrl.create({
-            title: 'អតិថិជន',
-            message: 'តើអ្នកប្រាកដជាចង់លុបអតិថិជនមែនទេ?',
-            buttons: [
-                {
-                    text: 'ទេ',
-                    handler: function () {
-                        console.log('Disagree clicked');
-                    }
-                },
-                {
-                    text: 'បាទ',
-                    handler: function () {
-                        console.log('Agree clicked');
-                    }
-                }
-            ]
-        });
-        confirm.present();
-    };
     return Customer;
 }());
 Customer = Customer_1 = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'customer',template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/index.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title kh>អតិថិជន</ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="openCreateModal()">\n          <span kh ion-text color="primary" showWhen="ios">បន្ថែម</span>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>\n  <ion-list>\n    <!-- <ion-list-header>Today</ion-list-header> -->\n    <ion-item-sliding *ngFor="let item of items">\n      <ion-item>\n        <ion-avatar item-start>\n          <img src="{{item.image}}">\n        </ion-avatar>\n        <h2>{{item.title}}</h2>\n        <p>{{item.note}}</p>\n        <ion-note item-end>{{item.time}}</ion-note>\n      </ion-item>\n      <ion-item-options>\n          <button ion-button color="light" (click)="openEditModal(item)" icon-start>\n            &nbsp;&nbsp;&nbsp;&nbsp;កែ&nbsp;&nbsp;&nbsp;&nbsp;\n          </button>\n          <button ion-button color="danger" (click)="deleteItem(item)" icon-start>\n            &nbsp;&nbsp;លុប&nbsp;&nbsp;\n          </button>\n        </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n  <ion-fab bottom right (click)="openCreateModal()" hideWhen="ios">\n    <button ion-fab><ion-icon [name]="\'add\'"></ion-icon></button>\n  </ion-fab>\n</ion-content>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/index.html"*/
+        selector: 'customer',template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/index.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title kh>អតិថិជន</ion-title>\n    <ion-buttons end [hidden]="selectedItem">\n      <button ion-button (click)="openCreateModal()">\n          <span kh ion-text color="primary" showWhen="ios">បន្ថែម</span>\n      </button>\n    </ion-buttons>\n    <ion-buttons end [hidden]="!selectedItem">\n        <button ion-button (click)="openEditModal(modelDetail)">\n            <span kh ion-text color="primary">កែ</span>\n        </button>\n      </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf="!selectedItem;then list_content else detail_content"></div>\n  <ng-template #list_content>\n    <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>\n    <ion-list>\n      <!-- <ion-list-header>Today</ion-list-header> -->\n      <ion-item-sliding *ngFor="let item of items" (click)="itemTapped($event, item)">\n        <ion-item>\n          <!-- <ion-avatar item-start>\n            <img src="{{item.image}}">\n          </ion-avatar> -->\n          <h2>{{item.fullName}}</h2>\n          <p>{{item.email}}</p>\n          <ion-note item-end>{{item.gender}}</ion-note>\n        </ion-item>\n        <ion-item-options>\n            <button ion-button color="light" (click)="openEditModal(item)" icon-start>\n              &nbsp;&nbsp;&nbsp;&nbsp;កែ&nbsp;&nbsp;&nbsp;&nbsp;\n            </button>\n            <button ion-button color="danger" (click)="deleteItem(item)" icon-start>\n              &nbsp;&nbsp;លុប&nbsp;&nbsp;\n            </button>\n          </ion-item-options>\n      </ion-item-sliding>\n    </ion-list>\n    <ion-fab bottom right [hidden]="selectedItem" (click)="openCreateModal()" hideWhen="ios">\n      <button ion-fab><ion-icon [name]="\'add\'"></ion-icon></button>\n    </ion-fab>\n  </ng-template>\n\n  <ng-template #detail_content>\n    <ion-card>\n      <ion-item>\n        <ion-avatar item-start>\n          <!-- <img src="img/marty-avatar.png"> -->\n        </ion-avatar>\n        <h2>{{modelDetail.fullName}}</h2>\n        <p>{{modelDetail.idCardNumber}}</p>\n      </ion-item>\n    \n      <!-- <img src="img/advance-card-bttf.png"> -->\n    \n      <ion-card-content>\n        <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>\n      </ion-card-content>\n    \n      <ion-row>\n        <ion-col>\n          <button ion-button icon-left clear small>\n            <ion-icon name="thumbs-up"></ion-icon>\n            <div>12 Likes</div>\n          </button>\n        </ion-col>\n        <ion-col>\n          <button ion-button icon-left clear small>\n            <ion-icon name="text"></ion-icon>\n            <div>4 Comments</div>\n          </button>\n        </ion-col>\n        <ion-col center text-center>\n          <ion-note>\n            11h ago\n          </ion-note>\n        </ion-col>\n      </ion-row>\n    </ion-card>\n  </ng-template>\n</ion-content>\n'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/index.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */]])
@@ -55848,10 +55859,6 @@ var ModalAdd = (function () {
         this.platform = platform;
         this.params = params;
         this.viewCtrl = viewCtrl;
-        this.model = {
-            title: "",
-            description: ""
-        };
         this.model = params.get('model');
     }
     ModalAdd.prototype.submit = function () {
@@ -55863,13 +55870,18 @@ var ModalAdd = (function () {
     return ModalAdd;
 }());
 ModalAdd = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/form.html"*/'<ion-header>\n    <ion-toolbar>\n        <ion-title kh>\n            {{model.titleModal}}\n        </ion-title>\n\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span kh ion-text color="primary" showWhen="ios">បិទ</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n        \n        <ion-buttons end>\n            <button ion-button (click)="submit()">\n                <span kh ion-text color="primary">រក្សាទុក</span>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content kh>\n    <ion-list>\n        <ion-item>\n            <ion-label>ឈ្មោះអតិថិជន</ion-label>\n            <ion-input type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>លេខអត្តសញ្ញាណប័ណ្ណ</ion-label>\n            <ion-input type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ភេទ</ion-label>\n            <ion-select interface="action-sheet">\n                <ion-option value="f">ប្រុស</ion-option>\n                <ion-option value="m">ស្រី</ion-option>\n            </ion-select>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ថ្ងៃខែឆ្នាំកំណើត</ion-label>\n            <ion-datetime displayFormat="DD MM YYYY"></ion-datetime>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ស្ថានភាពគ្រួសារ</ion-label>\n            <ion-select interface="action-sheet">\n                <ion-option value="s">នៅលីវ</ion-option>\n                <ion-option value="m">រៀបការហើយ</ion-option>\n            </ion-select>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>Civility</ion-label>\n            <ion-input type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>សញ្ជាតិ</ion-label>\n            <ion-input type="text"></ion-input>\n        </ion-item>\n    </ion-list>\n\n    <ion-list>\n        <ion-item>\n            <ion-label>អ៊ីម៉ែល</ion-label>\n            <ion-input type="email"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>លេខទូរស័ព្ទ</ion-label>\n            <ion-input type="tel"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>លេខទូរស័ព្ទអត្តិថិជន</ion-label>\n            <ion-input type="tel"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ទីលំនៅបច្បន្នអតិថិជន</ion-label>\n            <ion-input type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ឯកសារបញ្ចាំ</ion-label>\n            <ion-input type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ស្ថានភាពអត្តិថិជន</ion-label>\n            <ion-select interface="action-sheet">\n                <ion-option value="s">សកម្ម</ion-option>\n                <ion-option value="m">អសកម្ម</ion-option>\n            </ion-select>\n        </ion-item>\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/form.html"*/
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/form.html"*/'<ion-header>\n    <ion-toolbar>\n        <ion-title kh>\n            {{model.titleModal}}\n        </ion-title>\n\n        <ion-buttons start>\n            <button ion-button (click)="dismiss()">\n                <span kh ion-text color="primary" showWhen="ios">បិទ</span>\n                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>\n            </button>\n        </ion-buttons>\n        \n        <ion-buttons end>\n            <button ion-button (click)="submit()">\n                <span kh ion-text color="primary">រក្សាទុក</span>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content kh>\n    <ion-list>\n        <ion-item>\n            <ion-label>ឈ្មោះអតិថិជន</ion-label>\n            <ion-input [(ngModel)]="model.fullName" type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>លេខអត្តសញ្ញាណប័ណ្ណ</ion-label>\n            <ion-input [(ngModel)]="model.idCardNumber" type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ភេទ</ion-label>\n            <ion-select [(ngModel)]="model.gender" interface="action-sheet">\n                <ion-option value="f">ប្រុស</ion-option>\n                <ion-option value="m">ស្រី</ion-option>\n            </ion-select>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ថ្ងៃខែឆ្នាំកំណើត</ion-label>\n            <ion-datetime [(ngModel)]="model.birthDate" displayFormat="DD MM YYYY"></ion-datetime>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ស្ថានភាពគ្រួសារ</ion-label>\n            <ion-select [(ngModel)]="model.maritalStatus" interface="action-sheet">\n                <ion-option value="s">នៅលីវ</ion-option>\n                <ion-option value="m">រៀបការហើយ</ion-option>\n            </ion-select>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>Civility</ion-label>\n            <ion-input [(ngModel)]="model.civility" type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>សញ្ជាតិ</ion-label>\n            <ion-input [(ngModel)]="model.nationality" type="text"></ion-input>\n        </ion-item>\n    </ion-list>\n\n    <ion-list>\n        <ion-item>\n            <ion-label>អ៊ីម៉ែល</ion-label>\n            <ion-input [(ngModel)]="model.email" type="email"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>លេខទូរស័ព្ទ</ion-label>\n            <ion-input [(ngModel)]="model.mobile1" type="tel"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>លេខទូរស័ព្ទអត្តិថិជន</ion-label>\n            <ion-input [(ngModel)]="model.mobile" type="tel"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ទីលំនៅបច្បន្នអតិថិជន</ion-label>\n            <ion-input [(ngModel)]="model.currentAddress" type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ឯកសារបញ្ចាំ</ion-label>\n            <ion-input [(ngModel)]="model.customerDocuments" type="text"></ion-input>\n        </ion-item>\n\n        <ion-item>\n            <ion-label>ស្ថានភាពអត្តិថិជន</ion-label>\n            <ion-select [(ngModel)]="model.status" interface="action-sheet">\n                <ion-option value="s">សកម្ម</ion-option>\n                <ion-option value="m">អសកម្ម</ion-option>\n            </ion-select>\n        </ion-item>\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/khengny/Documents/Projects/Zend/ionic-v3/FamilyLoan/src/pages/customer/form.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]])
 ], ModalAdd);
 
+var CustomerModel = (function () {
+    function CustomerModel() {
+    }
+    return CustomerModel;
+}());
 var Customer_1;
 //# sourceMappingURL=index.js.map
 

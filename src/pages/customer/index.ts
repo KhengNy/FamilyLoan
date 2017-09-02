@@ -7,28 +7,35 @@ import { ModalController, ViewController, NavController, NavParams, Platform, Al
 })
 export class Customer {
   selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, image: string, note: string, time: string}>;
+  items: Array<CustomerModel>;
+  modelDetail : CustomerModel;
 
   constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController
   ) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
-
-    this.initData();
+    if(this.selectedItem){
+      this.initDetailData();
+    } else {
+      this.initListData();
+    }
   }
 
-  initData(){
+  initListData(){
     this.items = [];
     for (let i = 1; i < 11; i++) {
       this.items.push({
-        title: 'Item ' + i,
-        image : 'assets/img/arya.jpg',
-        note: 'This is item #' + i,
-        time: i + ':' + i + ' AM'
+        fullName: 'Item ' + i,
+        idCardNumber : i + '',
+        civility: 'This is item #' + i,
+        gender: i + ':' + i + ' AM'
       });
     }
+  }
+
+  initDetailData(){
+    this.modelDetail = this.selectedItem;
   }
 
   itemTapped(event, item) {
@@ -36,15 +43,6 @@ export class Customer {
     this.navCtrl.push(Customer, {
       item: item
     });
-  }
-
-
-  openCreateModal() {
-    let model = {
-      titleModal : 'បន្ថែមអតិថិជនថ្មី'
-    };
-    let createModal = this.modalCtrl.create(ModalAdd, { model: model });
-    createModal.present();
   }
 
   searchItems(ev: any) {
@@ -57,21 +55,54 @@ export class Customer {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
-        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.fullName.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     } else{
-      this.initData();
+      this.initListData();
     }
   }
 
-  openEditModal(item){
-    item.titleModal = 'កែប្រែអតិថិជន';
-    let editModal = this.modalCtrl.create(ModalAdd, { model : item });
-    editModal.present();
+  openCreateModal() {
+    let model = {
+      titleModal : 'បន្ថែមអតិថិជនថ្មី'
+    };
+    let createModal = this.modalCtrl.create(ModalAdd, { model: model });
+    createModal.present().then(data => {
+      this.items.push(data);
+    });
+  }
+
+  openEditModal(model){
+    model.titleModal = 'កែប្រែអតិថិជន';
+    let editModal = this.modalCtrl.create(ModalAdd, { model : model });
+    editModal.present().then(data => {
+      model = data;
+    });
   }
 
   deleteItem(item){
-    this.showConfirm();
+    this.showConfirm('អតិថិជន', 'តើអ្នកប្រាកដជាចង់លុបអតិថិជនមែនទេ?', 'យល់ព្រម', 'ទេ',
+      () => {
+        this.items.splice(this.items.indexOf(item), 1)
+      }, () => {}
+    );
+  }
+
+  showConfirm(title, message, lblYes, lblNo, fnYes, fnNo){
+    let confirm = this.alertCtrl.create({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          text: lblNo,
+          handler: fnNo
+        }, {
+          text: lblYes,
+          handler: fnYes
+        }
+      ]
+    });
+    return confirm.present();
   }
 
   showRadio() {
@@ -96,28 +127,6 @@ export class Customer {
     alert.present();
   }
 
-  showConfirm() {
-    let confirm = this.alertCtrl.create({
-      title: 'អតិថិជន',
-      message: 'តើអ្នកប្រាកដជាចង់លុបអតិថិជនមែនទេ?',
-      buttons: [
-        {
-          text: 'ទេ',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'បាទ',
-          handler: () => {
-            console.log('Agree clicked');
-          }
-        }
-      ]
-    });
-    confirm.present();
-  }
-
 }
 
 @Component({
@@ -125,10 +134,7 @@ export class Customer {
 })
 export class ModalAdd {
 
-  model = {
-    title : "",
-    description : ""
-  }
+  model : CustomerModel;
 
   constructor(public platform: Platform,
     public params: NavParams,
@@ -144,4 +150,20 @@ export class ModalAdd {
     this.viewCtrl.dismiss();
   }
 
+}
+
+class CustomerModel {
+  fullName: string;
+  idCardNumber: string;
+  civility: string;
+  birthDate?: Date;
+  gender?: string;
+  maritalStatus?: string;
+  nationality?: string;
+  mobile?: string;
+  mobile1?: string;
+  email?: string;
+  customerDocuments?: string;
+  status?: string;
+  currentAddress?: string;
 }
