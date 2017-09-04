@@ -29,7 +29,9 @@ logo font: `Noteworthy`
 Git using:
 - pull from master repository
  > git pull https://github.com/KhengNy/FamilyLoan.git master
+- add to staged changes
+ > git add .
 - commit 
- >
+ > git commit -a -m "update readme"
 - push
- > 
+ >  git push origin master
