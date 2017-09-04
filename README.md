@@ -26,3 +26,10 @@ Substitute ios for android if not on a Mac.
 
 logo font: `Noteworthy`
 
+Git using:
+- pull from master repository
+ > git pull https://github.com/KhengNy/FamilyLoan.git master
+- commit 
+ >
+- push
+ > 
