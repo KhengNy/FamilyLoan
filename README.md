@@ -26,12 +26,20 @@ Substitute ios for android if not on a Mac.
 
 logo font: `Noteworthy`
 
-Git using:
+### Git using:
 - pull from master repository
- > git pull https://github.com/KhengNy/FamilyLoan.git master
+```bash
+$ git pull https://github.com/KhengNy/FamilyLoan.git master
+```
 - add to staged changes
- > git add .
+```bash
+$ git add .
+```
 - commit 
- > git commit -a -m "update readme"
+```bash
+$ git commit -a -m "update readme"
+```
 - push
- >  git push origin master
+```bash
+$ git push origin master
+```
