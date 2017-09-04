@@ -8,12 +8,14 @@ import { Customer, CustomerFromModal } from '../pages/customer/index';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { FilterPipe, SortByPipe } from './pipes'
 
 @NgModule({
   declarations: [
     MyApp,
     Dashboard,
-    Customer, CustomerFromModal
+    Customer, CustomerFromModal,
+    FilterPipe, SortByPipe
   ],
   imports: [
     BrowserModule,

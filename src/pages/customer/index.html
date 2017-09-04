@@ -20,10 +20,14 @@
 <ion-content>
   <div *ngIf="!selectedItem;then list_content else detail_content"></div>
   <ng-template #list_content>
-    <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>
+    <ion-refresher (ionRefresh)="refreshListData($event)">
+      <ion-refresher-content
+      pullingText="Pull to refresh"></ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar [(ngModel)]="searchInput"></ion-searchbar>
     <ion-list>
       <!-- <ion-list-header>Today</ion-list-header> -->
-      <ion-item-sliding *ngFor="let item of items">
+      <ion-item-sliding *ngFor="let item of items | filter:searchInput">
         <ion-item (click)="itemTapped($event, item)">
           <ion-avatar item-start>
             <img src="assets/img/arya.jpg">

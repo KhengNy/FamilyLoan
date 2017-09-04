@@ -15,6 +15,7 @@ export class Customer {
   ) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
+    
     if(this.selectedItem){
       this.initDetailData();
     } else {
@@ -35,6 +36,16 @@ export class Customer {
     }
   }
 
+  refreshListData(refresher){
+    console.log('Begin async operation', refresher);
+    
+    setTimeout(() => {
+      this.initListData();
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
   initDetailData(){
     this.modelDetail = this.selectedItem;
   }
@@ -44,23 +55,6 @@ export class Customer {
     this.navCtrl.push(Customer, {
       item: item
     });
-  }
-
-  searchItems(ev: any) {
-    // Reset items back to all of the items
-    // this.initializeItems();
-
-    // set val to the value of the searchbar
-    let val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.fullName.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    } else{
-      this.initListData();
-    }
   }
 
   openCreateModal() {
