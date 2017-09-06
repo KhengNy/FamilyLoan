@@ -3912,7 +3912,7 @@ ion-icon::before {
 [kh] ion-label,
 [kh] ion-select,
 [kh] input {
-  line-height: 24px;
+  line-height: 30px;
 }
 
 ion-icon[kh] {

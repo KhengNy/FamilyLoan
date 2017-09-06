@@ -25,13 +25,13 @@ export class Customer {
 
   initListData(){ 
     this.items = [];
-    for (let i = 1; i < 11; i++) {
+    for (let i = 1; i < 21; i++) {
       this.items.push({
         fullName: 'Item ' + i,
-        idCardNumber : i + '',
+        idCardNumber : '092873823253' + i,
         civility: 'This is item #' + i,
         gender: i + ':' + i + ' AM',
-        email: 'yep@gmail.com'
+        email: 'yep'+ i +'@gmail.com'
       });
     }
   }

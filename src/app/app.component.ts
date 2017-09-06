@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Dashboard } from '../pages/dashboard/index';
 import { Customer } from '../pages/customer/index';
+import { Loan } from '../pages/loan/index';
 import * as Globals from './globals';
 
 @Component({
@@ -25,7 +26,7 @@ export class MyApp {
       { title: 'ផ្ទាំងគ្រប់គ្រង', component: Dashboard , icon : Globals.icons.dashboard},
       { title: 'ការបង់ប្រាក់', component: Customer , icon : Globals.icons.payment},
       { title: 'អតិថិជន', component: Customer , icon : Globals.icons.customer},
-      { title: 'ឥណទាន', component: Customer , icon : Globals.icons.loan},
+      { title: 'ឥណទាន', component: Loan , icon : Globals.icons.loan},
       { title: 'ភ្នាក់ងារ', component: Customer , icon : Globals.icons.agent},
       { title: 'អ្នកប្រើប្រាស់', component: Customer , icon : Globals.icons.user},
       { title: 'ការកំណត់', component: Customer , icon : Globals.icons.setting}

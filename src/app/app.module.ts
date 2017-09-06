@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { Dashboard } from '../pages/dashboard/index';
 import { Customer, CustomerFromModal } from '../pages/customer/index';
+import { Loan, LoanFromModal } from '../pages/loan/index';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,9 +17,11 @@ import { FilterPipe, SortByPipe } from './pipes'
     MyApp,
     Dashboard,
     Customer, CustomerFromModal,
+    Loan, LoanFromModal,
     FilterPipe, SortByPipe
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
   ],
@@ -25,7 +29,8 @@ import { FilterPipe, SortByPipe } from './pipes'
   entryComponents: [
     MyApp,
     Dashboard,
-    Customer, CustomerFromModal
+    Customer, CustomerFromModal,
+    Loan, LoanFromModal
   ],
   providers: [
     StatusBar,

@@ -4,9 +4,9 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title kh>អតិថិជន</ion-title>
-    <ion-buttons end [hidden]="selectedItem">
+    <ion-buttons end [hidden]="selectedItem" showWhen="ios">
       <button ion-button (click)="openCreateModal()">
-          <span kh ion-text color="primary" showWhen="ios">បន្ថែម</span>
+          <span kh ion-text color="primary">បន្ថែម</span>
       </button>
     </ion-buttons>
     <ion-buttons end [hidden]="!selectedItem">

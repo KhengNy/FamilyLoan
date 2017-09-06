@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title kh>ឥណទាន</ion-title>
+    <ion-buttons end [hidden]="selectedItem" showWhen="ios">
+      <button ion-button (click)="openCreateModal()">
+          <span kh ion-text color="primary">បន្ថែម</span>
+      </button>
+    </ion-buttons>
+    <ion-buttons end [hidden]="!selectedItem">
+        <button ion-button (click)="openEditModal(modelDetail)">
+            <span kh ion-text color="primary">កែ</span>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!selectedItem;then list_content else detail_content"></div>
+  <ng-template #list_content>
+    <ion-refresher (ionRefresh)="refreshListData($event)">
+      <ion-refresher-content
+      pullingText="Pull to refresh"></ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar [(ngModel)]="searchInput"></ion-searchbar>
+    <ion-list>
+      <!-- <ion-list-header>Today</ion-list-header> -->
+      <ion-item-sliding *ngFor="let item of items | filter:searchInput">
+        <ion-item (click)="itemTapped($event, item)">
+          <ion-avatar item-start>
+            <img src="assets/img/arya.jpg">
+          </ion-avatar>
+          <h2>{{item.fullName}}</h2>
+          <p>{{item.email}}</p>
+          <ion-note item-end>{{item.gender}}</ion-note>
+        </ion-item>
+        <ion-item-options>
+            <button ion-button color="light" (click)="openEditModal(item)" icon-start>
+              &nbsp;&nbsp;&nbsp;&nbsp;កែ&nbsp;&nbsp;&nbsp;&nbsp;
+            </button>
+            <button ion-button color="danger" (click)="deleteItem(item)" icon-start>
+              &nbsp;&nbsp;លុប&nbsp;&nbsp;
+            </button>
+          </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-fab bottom right [hidden]="selectedItem" (click)="openCreateModal()" hideWhen="ios">
+      <button ion-fab><ion-icon [name]="'add'"></ion-icon></button>
+    </ion-fab>
+  </ng-template>
+
+  <ng-template #detail_content>
+    <ion-card>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/img/arya.jpg">
+        </ion-avatar>
+        <h2>{{modelDetail.fullName}}</h2>
+        <p>{{modelDetail.idCardNumber}}</p>
+      </ion-item>
+    
+      <!-- <img src="img/advance-card-bttf.png"> -->
+    
+      <ion-card-content>
+        <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+      </ion-card-content>
+    
+      <ion-row>
+        <ion-col left text-left>
+          <button ion-button clear small>
+            <div>12 កម្ចីឥណទាន</div>
+          </button>
+        </ion-col>
+        <ion-col center text-center>
+          <button ion-button clear small>
+            <div>5 Active</div>
+          </button>
+        </ion-col>
+        <ion-col right text-right>
+          <button ion-button clear small>
+            <div>5 Active</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ng-template>
+</ion-content>
