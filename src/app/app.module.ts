@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { Dashboard } from '../pages/dashboard/index';
 import { Customer, CustomerFromModal } from '../pages/customer/index';
 import { Loan, LoanFromModal } from '../pages/loan/index';
+import { Login } from '../pages/login/index';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,6 +19,7 @@ import { FilterPipe, SortByPipe } from './pipes'
     Dashboard,
     Customer, CustomerFromModal,
     Loan, LoanFromModal,
+    Login,
     FilterPipe, SortByPipe
   ],
   imports: [
@@ -30,7 +32,8 @@ import { FilterPipe, SortByPipe } from './pipes'
     MyApp,
     Dashboard,
     Customer, CustomerFromModal,
-    Loan, LoanFromModal
+    Loan, LoanFromModal,
+    Login
   ],
   providers: [
     StatusBar,

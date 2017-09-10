@@ -8,5 +8,6 @@ export const icons = {
     'loan' : 'logo-usd',
     'agent' : 'contacts',
     'user' : 'contact',
-    'setting' : 'settings'
+    'setting' : 'settings',
+    'logout' : 'log-out'
 };
